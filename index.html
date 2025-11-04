@@ -16,7 +16,7 @@
       <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top custom-navbar">
         <div class="container-fluid">
           <a class="navbar-brand logo-mc ms-auto">
-            <img src="mclogo-black.png" alt="mclogo" width="40" height="30">
+            <img src="images/mclogo-black.png" alt="mclogo" width="40" height="30">
           </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -138,8 +138,154 @@
       </section>
     </div>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+  <!-- Gallery Section -->
+  <section class="gallery-section py-5 bg-light" id="gallery">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h2 class="display-5 mb-4 text-center">Photo Gallery</h2>
+          <p class="text-center text-muted mb-5">Discover the beauty and majesty of Mayon Volcano through stunning
+            photographs</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-10 mx-auto">
+          <!-- Bootstrap Carousel -->
+          <div id="mayonGalleryCarousel" class="carousel slide" data-bs-ride="carousel">
+            <!-- Carousel Indicators -->
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#mayonGalleryCarousel" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#mayonGalleryCarousel" data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+              <button type="button" data-bs-target="#mayonGalleryCarousel" data-bs-slide-to="2"
+                aria-label="Slide 3"></button>
+              <button type="button" data-bs-target="#mayonGalleryCarousel" data-bs-slide-to="3"
+                aria-label="Slide 4"></button>
+              <button type="button" data-bs-target="#mayonGalleryCarousel" data-bs-slide-to="4"
+                aria-label="Slide 5"></button>
+              <button type="button" data-bs-target="#mayonGalleryCarousel" data-bs-slide-to="5"
+                aria-label="Slide 6"></button>
+              <button type="button" data-bs-target="#mayonGalleryCarousel" data-bs-slide-to="6"
+                aria-label="Slide 7"></button>
+              <button type="button" data-bs-target="#mayonGalleryCarousel" data-bs-slide-to="7"
+                aria-label="Slide 8"></button>
+              <button type="button" data-bs-target="#mayonGalleryCarousel" data-bs-slide-to="8"
+                aria-label="Slide 9"></button>
+            </div>
+
+            <!-- Carousel Items -->
+            <div class="carousel-inner" style="height: 600px;">
+              <!-- Slide 1 -->
+              <div class="carousel-item active" style="height: 600px;">
+                <img src="images/mayon-perfectcone.jpg" class="d-block w-100" style="height: 100%; object-fit: cover;"
+                  alt="Mayon Volcano Perfect Cone">
+                <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 rounded p-3">
+                  <h5>The Perfect Cone</h5>
+                  <p>Mayon's iconic symmetrical shape against a clear blue sky.</p>
+                </div>
+              </div>
+
+              <!-- Slide 2 -->
+              <div class="carousel-item" style="height: 600px;">
+                <img src="images/mayon-cagsawa.jpg" class="d-block w-100" style="height: 100%; object-fit: cover;"
+                  alt="Cagsawa Ruins with Mayon">
+                <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 rounded p-3">
+                  <h5>Cagsawa Ruins</h5>
+                  <p>Historic church ruins with Mayon Volcano in the background.</p>
+                </div>
+              </div>
+
+              <!-- Slide 3 -->
+              <div class="carousel-item" style="height: 600px;">
+                <img src="images/mayon-sunrise.jpg" class="d-block w-100" style="height: 100%; object-fit: cover;"
+                  alt="Mayon at Sunrise">
+                <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 rounded p-3">
+                  <h5>Dawn at Mayon</h5>
+                  <p>Breathtaking sunrise view illuminating the volcano.</p>
+                </div>
+              </div>
+
+              <!-- Slide 4 -->
+              <div class="carousel-item" style="height: 600px;">
+                <img src="images/mayon-eruption.jpg" class="d-block w-100" style="height: 100%; object-fit: cover;"
+                  alt="Mayon Eruption">
+                <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 rounded p-3">
+                  <h5>Volcanic Activity</h5>
+                  <p>Mayon displaying its raw power during an eruption.</p>
+                </div>
+              </div>
+
+              <!-- Slide 5 -->
+              <div class="carousel-item" style="height: 600px;">
+                <img src="images/mayon-lava.jpg" class="d-block w-100" style="height: 100%; object-fit: cover;"
+                  alt="Mayon Lava Flow">
+                <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 rounded p-3">
+                  <h5>Lava Flow</h5>
+                  <p>Dramatic lava cascading down Mayon's slopes at night.</p>
+                </div>
+              </div>
+
+              <!-- Slide 6 -->
+              <div class="carousel-item" style="height: 600px;">
+                <img src="images/mayon-countryside.jpg" class="d-block w-100" style="height: 100%; object-fit: cover;"
+                  alt="Mayon and Countryside">
+                <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 rounded p-3">
+                  <h5>Albay Countryside</h5>
+                  <p>Mayon towering over the lush Bicol landscape.</p>
+                </div>
+              </div>
+
+              <!-- Slide 7 -->
+              <div class="carousel-item" style="height: 600px;">
+                <img src="images/mayon-clouds.jpg" class="d-block w-100" style="height: 100%; object-fit: cover;"
+                  alt="Mayon with Clouds">
+                <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 rounded p-3">
+                  <h5>Mayon in the Clouds</h5>
+                  <p>The summit peeking through dramatic cloud formations.</p>
+                </div>
+              </div>
+
+              <!-- Slide 8 -->
+              <div class="carousel-item" style="height: 600px;">
+                <img src="images/mayon-nightsky.jpg" class="d-block w-100" style="height: 100%; object-fit: cover;"
+                  alt="Mayon Night Sky">
+                <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 rounded p-3">
+                  <h5>Starry Night</h5>
+                  <p>Mayon silhouette beneath a stunning starlit sky.</p>
+                </div>
+              </div>
+
+              <!-- Slide 9 -->
+              <div class="carousel-item" style="height: 600px;">
+                <img src="images/mayon-aerial.jpg" class="d-block w-100" style="height: 100%; object-fit: cover;"
+                  alt="Aerial View of Mayon">
+                <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 rounded p-3">
+                  <h5>Aerial Perspective</h5>
+                  <p>Bird's eye view showcasing Mayon's perfect geometry.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Carousel Controls -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#mayonGalleryCarousel"
+              data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#mayonGalleryCarousel"
+              data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
     crossorigin="anonymous"></script>
 </body>
 

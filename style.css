@@ -17,7 +17,7 @@ body {
 }
 
 .hero {
-  background-image: url('mayon.jpg');
+  background-image: url('images/mayon.jpg');
   background-size: cover;
   background-position: center;
   min-height: 140vh;
