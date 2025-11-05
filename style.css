@@ -1,5 +1,5 @@
 .custom-navbar {
-  background: rgba(255, 255, 255, 0.15) !important;
+  background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
