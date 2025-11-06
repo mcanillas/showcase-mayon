@@ -121,3 +121,7 @@ section {
   padding: 0.6rem 1.5rem;
   font-weight: 500;
 }
+
+* {
+  outline: 1px solid red;
+}
