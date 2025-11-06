@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
 .custom-navbar {
   background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(15px);
@@ -26,3 +28,24 @@ body {
   align-items: center;
   color: white;
 }
+
+h1, h2, h3, h4, h5, h6,
+.display-1, .display-2, .display-3, .display-4, .display-5, .display-6 {
+  font-family: 'Poppins', sans-serif;
+}
+
+.mayon-mainlogo {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+}
+
+.card-title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+}
+
+.carousel-caption h5 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+}
+
