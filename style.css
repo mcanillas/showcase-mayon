@@ -5,6 +5,8 @@
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -120,8 +122,4 @@ section {
   border-radius: 6px;
   padding: 0.6rem 1.5rem;
   font-weight: 500;
-}
-
-* {
-  outline: 1px solid red;
 }
