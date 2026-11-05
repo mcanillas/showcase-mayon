@@ -54,15 +54,9 @@ h1, h2, h3, h4, h5, h6,
 }
 
 .nav-link,
-.card,
 .carousel-control-prev,
 .carousel-control-next {
   transition: all 0.3s ease;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 p {
@@ -467,10 +461,6 @@ section {
 [data-bs-theme="dark"] .card {
   background-color: #161e2e;
   border-color: rgba(255, 255, 255, 0.08);
-}
-
-[data-bs-theme="dark"] .card:hover {
-  box-shadow: 0 10px 20px rgba(255, 90, 20, 0.15);
 }
 
 [data-bs-theme="dark"] footer.bg-dark {
