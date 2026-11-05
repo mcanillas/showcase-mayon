@@ -40,12 +40,6 @@
               <li class="nav-item">
                 <a class="nav-link" href="#gallery">Gallery</a>
               </li>
-              <li class="nav-item d-flex align-items-center">
-                <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle night mode">
-                  <span class="icon-moon" aria-hidden="true">&#9790;</span>
-                  <span class="icon-sun" aria-hidden="true">&#9728;</span>
-                </button>
-              </li>
             </ul>
           </div>
         </div> 
@@ -206,6 +200,12 @@
               <div class="col-lg-8">
                 <h1 class="display-4 mayon-mainlogo">Mayon Volcano</h1>
                 <p class="lead">World's Most Perfect Cone Volcano</p>
+                <button class="hero-cta" id="themeToggle" type="button">
+                  <span class="icon-moon" aria-hidden="true">&#9790;</span>
+                  <span class="icon-sun" aria-hidden="true">&#9728;</span>
+                  <span class="label-night">See Mayon erupt at night</span>
+                  <span class="label-day">Back to daylight</span>
+                </button>
               </div>
             </div>
           </div>
@@ -552,7 +552,15 @@
       sparkTimer = setTimeout(function () { sparks.textContent = ''; }, 3500);
     }
 
-    document.getElementById('themeToggle').addEventListener('click', function () {
+    var toggle = document.getElementById('themeToggle');
+
+    // Glow + wiggle the button on a first visit so people notice it; stops once it has been used
+    try {
+      if (!localStorage.getItem('theme')) toggle.classList.add('attention');
+    } catch (e) {}
+
+    toggle.addEventListener('click', function () {
+      toggle.classList.remove('attention');
       var root = document.documentElement;
       var isDark = root.getAttribute('data-bs-theme') === 'dark';
       if (isDark) {
