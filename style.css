@@ -22,9 +22,6 @@ body {
 }
 
 .hero {
-  background-image: url('images/mayon.jpg');
-  background-size: cover;
-  background-position: center;
   min-height: 140vh;
   position: relative;
   display: flex;
@@ -120,4 +117,362 @@ section {
   border-radius: 6px;
   padding: 0.6rem 1.5rem;
   font-weight: 500;
+}
+
+/* ---------- Theme toggle ---------- */
+
+.theme-toggle {
+  background: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  margin-left: 0.5rem;
+  font-size: 1.1rem;
+  line-height: 1;
+  color: #000;
+  cursor: pointer;
+}
+
+.theme-toggle:hover {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.icon-sun,
+.logo-dark {
+  display: none;
+}
+
+/* ---------- Hero photo + night lava ---------- */
+
+/* Photo lives on a pseudo-element so night mode can filter it without dimming the text */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url('images/mayon.jpg');
+  background-size: cover;
+  background-position: center;
+  transition: filter 1.2s ease;
+}
+
+.hero-lava {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1.5s ease, visibility 1.5s;
+}
+
+.hero-lava use {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Deep navy grade: multiplies over the greyscale photo so the sky turns navy and land goes near-black */
+.hero-night-tint {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #2c56b4 0%, #2a50a2 50%, #1a2f5e 78%, #141f3a 100%);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+
+.lava-illum use {
+  stroke: #ff2200;
+  stroke-width: 60;
+  opacity: 0.2;
+}
+
+.lava-glow {
+  animation: lavaFlicker 3s ease-in-out infinite;
+}
+
+.lava-glow use {
+  stroke: url(#lavaGrad);
+  stroke-width: 7;
+  opacity: 0.7;
+}
+
+.lava-glow use.main {
+  stroke-width: 13;
+}
+
+.lava-core use {
+  stroke: url(#lavaGrad);
+  stroke-width: 2;
+}
+
+.lava-core use.main {
+  stroke-width: 4;
+}
+
+.lava-hot use {
+  stroke: url(#hotGrad);
+  stroke-width: 1.5;
+}
+
+/* Irregular bright surges creeping slowly downhill */
+.lava-pulse use {
+  stroke: #ffb070;
+  stroke-width: 2;
+  opacity: 0.7;
+  stroke-dasharray: 4 26 12 50 3 35;
+  animation: lavaFlow 6s linear infinite;
+}
+
+.lava-rocks ellipse {
+  fill: #ffa860;
+}
+
+.ember {
+  fill: #ffb060;
+  animation: emberFly var(--t) ease-out infinite;
+}
+
+@keyframes emberFly {
+  0% { opacity: 1; transform: translate(0, 0); }
+  60% { opacity: 0.9; transform: translate(calc(var(--dx) * 0.7), var(--dy)); }
+  100% { opacity: 0; transform: translate(var(--dx), calc(var(--dy) * 0.7)); }
+}
+
+.crater-glow {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: lavaPulse 2.5s ease-in-out infinite;
+}
+
+.plume {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: plumeDrift 9s ease-in-out infinite alternate;
+}
+
+#heroStars circle {
+  fill: #fff;
+  animation: twinkle 5s ease-in-out infinite;
+}
+
+#townLights circle {
+  animation: twinkle 6s ease-in-out infinite;
+}
+
+@keyframes lavaFlow {
+  to { stroke-dashoffset: -130; }
+}
+
+@keyframes lavaFlicker {
+  0%, 100% { opacity: 0.85; }
+  20% { opacity: 0.95; }
+  45% { opacity: 0.75; }
+  70% { opacity: 1; }
+}
+
+@keyframes lavaPulse {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.12); }
+}
+
+@keyframes plumeDrift {
+  from { transform: translateX(0) scale(1); }
+  to { transform: translateX(18px) scale(1.08, 1.12); }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.9; }
+  50% { opacity: 0.35; }
+}
+
+/* ---------- Eruption sequence when night mode is switched on ---------- */
+
+.hero {
+  overflow: hidden;
+}
+
+.reveal-path {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 200;
+  stroke-linecap: round;
+  stroke-dasharray: 1 1;
+  stroke-dashoffset: 0;
+}
+
+.hero.erupting {
+  animation: quake 0.7s ease-in-out 0.6s;
+}
+
+.hero.erupting .reveal-path {
+  animation: lavaReveal 3.2s cubic-bezier(0.3, 0.6, 0.4, 1) 0.8s both;
+}
+
+.hero.erupting .reveal-path.branch {
+  animation-duration: 2s;
+  animation-delay: 2.2s;
+}
+
+.hero.erupting .vent {
+  animation: fadeIn 0.5s ease-out 0.6s both;
+}
+
+.plume-rise {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+}
+
+.crater-flash {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.hero.erupting .plume-rise {
+  animation: plumeRise 3s ease-out 0.7s both;
+}
+
+.hero.erupting .crater-flash {
+  animation: craterFlash 1.4s ease-out 0.6s both;
+}
+
+.spark {
+  fill: #ffd27a;
+  opacity: 0;
+  animation: sparkFly var(--t) cubic-bezier(0.2, 0.7, 0.4, 1) var(--d) both;
+}
+
+@keyframes lavaReveal {
+  from { stroke-dashoffset: 1; }
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes plumeRise {
+  from { opacity: 0; transform: scale(0.2); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes craterFlash {
+  0% { opacity: 0; transform: scale(0.3); }
+  15% { opacity: 1; }
+  100% { opacity: 0; transform: scale(1.4); }
+}
+
+@keyframes sparkFly {
+  0% { opacity: 1; transform: translate(0, 0); }
+  45% { opacity: 1; transform: translate(calc(var(--dx) * 0.55), var(--dy)); }
+  100% { opacity: 0; transform: translate(var(--dx), calc(var(--dy) * 0.2 + 160px)); }
+}
+
+@keyframes quake {
+  0%, 100% { transform: translate(0, 0); }
+  15% { transform: translate(-3px, 2px); }
+  30% { transform: translate(3px, -2px); }
+  45% { transform: translate(-2px, -1px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(-1px, 1px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lava-pulse use,
+  .lava-glow,
+  .crater-glow,
+  .plume,
+  .ember,
+  #heroStars circle,
+  #townLights circle {
+    animation: none;
+  }
+}
+
+/* ---------- Night mode ---------- */
+
+[data-bs-theme="dark"] body {
+  background: #0b0f1a;
+  color: #dee2e6;
+}
+
+[data-bs-theme="dark"] .custom-navbar {
+  background: rgba(11, 15, 26, 0.55);
+  border-bottom: 1px solid rgba(255, 120, 40, 0.25);
+}
+
+[data-bs-theme="dark"] .custom-navbar .nav-link {
+  color: #f1f1f1;
+}
+
+[data-bs-theme="dark"] .custom-navbar .nav-link:hover {
+  color: #ff7a2f;
+}
+
+[data-bs-theme="dark"] .theme-toggle {
+  border-color: rgba(255, 255, 255, 0.35);
+  color: #ffb347;
+}
+
+[data-bs-theme="dark"] .theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+[data-bs-theme="dark"] .icon-sun,
+[data-bs-theme="dark"] .logo-dark {
+  display: inline;
+}
+
+[data-bs-theme="dark"] .icon-moon,
+[data-bs-theme="dark"] .logo-light {
+  display: none;
+}
+
+[data-bs-theme="dark"] .hero::before {
+  filter: grayscale(1) brightness(0.55) contrast(1.25);
+}
+
+[data-bs-theme="dark"] .hero-overlay {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.25));
+}
+
+[data-bs-theme="dark"] .hero-night-tint {
+  opacity: 1;
+}
+
+[data-bs-theme="dark"] .hero-lava {
+  opacity: 1;
+  visibility: visible;
+}
+
+[data-bs-theme="dark"] .mayon-mainlogo {
+  text-shadow: 0 0 18px rgba(255, 90, 20, 0.7);
+}
+
+[data-bs-theme="dark"] .gallery-section.bg-light,
+[data-bs-theme="dark"] .card.bg-light {
+  background-color: #111827 !important;
+}
+
+[data-bs-theme="dark"] .history-section,
+[data-bs-theme="dark"] .video-section {
+  background: #0b0f1a;
+}
+
+[data-bs-theme="dark"] .card {
+  background-color: #161e2e;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-bs-theme="dark"] .card:hover {
+  box-shadow: 0 10px 20px rgba(255, 90, 20, 0.15);
+}
+
+[data-bs-theme="dark"] footer.bg-dark {
+  background-color: #05070d !important;
 }
