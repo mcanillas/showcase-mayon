@@ -634,8 +634,9 @@ section {
 
 /* ---------- Hero photo + night lava ---------- */
 
-/* Photo lives on a pseudo-element so night mode can filter it without dimming the text */
-.hero::before {
+/* Day and night photos share the same size and framing, so they stay in register when crossfading */
+.hero::before,
+.hero-night {
   content: "";
   position: absolute;
   inset: 0;
@@ -643,7 +644,13 @@ section {
   background-size: cover;
   /* Anchored to the top so the summit never hides under the navbar; must match the SVG's xMidYMin */
   background-position: center top;
-  transition: filter 1.2s ease;
+}
+
+.hero-night {
+  background-image: url('images/mayon-night.jpg');
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 1.2s ease;
 }
 
 .hero-lava {
@@ -662,17 +669,6 @@ section {
   fill: none;
   stroke-linecap: round;
   stroke-linejoin: round;
-}
-
-/* Deep navy grade: multiplies over the greyscale photo so the sky turns navy and land goes near-black */
-.hero-night-tint {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, #2c56b4 0%, #2a50a2 50%, #1a2f5e 78%, #141f3a 100%);
-  mix-blend-mode: multiply;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 1.2s ease;
 }
 
 .lava-illum use {
@@ -718,6 +714,15 @@ section {
   animation: lavaFlow 6s linear infinite;
 }
 
+/* Brighter, longer surges on the fresh flows so the movement reads clearly on dark rock */
+.lava-pulse use.ext {
+  stroke: #ffd09a;
+  stroke-width: 3;
+  opacity: 0.95;
+  stroke-dasharray: 10 30 22 45 6 40;
+  animation-duration: 4s;
+}
+
 .lava-rocks ellipse {
   fill: #ffa860;
 }
@@ -745,15 +750,6 @@ section {
   animation: plumeDrift 9s ease-in-out infinite alternate;
 }
 
-#heroStars circle {
-  fill: #fff;
-  animation: twinkle 5s ease-in-out infinite;
-}
-
-#townLights circle {
-  animation: twinkle 6s ease-in-out infinite;
-}
-
 @keyframes lavaFlow {
   to { stroke-dashoffset: -130; }
 }
@@ -775,37 +771,24 @@ section {
   to { transform: translateX(18px) scale(1.08, 1.12); }
 }
 
-@keyframes twinkle {
-  0%, 100% { opacity: 0.9; }
-  50% { opacity: 0.35; }
-}
-
 /* ---------- Eruption sequence when night mode is switched on ---------- */
 
 .hero {
   overflow: hidden;
 }
 
+/* Per-flow reveal stroke. Flat ends so nothing shows ahead of the front.
+   The pour sets stroke-dashoffset as an attribute (1 hidden -> 0 shown), so don't set it here. */
 .reveal-path {
   fill: none;
   stroke: #fff;
-  stroke-width: 200;
-  stroke-linecap: round;
+  stroke-width: 90;
+  stroke-linecap: butt;
   stroke-dasharray: 1 1;
-  stroke-dashoffset: 0;
 }
 
 .hero.erupting {
   animation: quake 0.7s ease-in-out 0.6s;
-}
-
-.hero.erupting .reveal-path {
-  animation: lavaReveal 3.2s cubic-bezier(0.3, 0.6, 0.4, 1) 0.8s both;
-}
-
-.hero.erupting .reveal-path.branch {
-  animation-duration: 2s;
-  animation-delay: 2.2s;
 }
 
 .hero.erupting .vent {
@@ -834,11 +817,6 @@ section {
   fill: #ffd27a;
   opacity: 0;
   animation: sparkFly var(--t) cubic-bezier(0.2, 0.7, 0.4, 1) var(--d) both;
-}
-
-@keyframes lavaReveal {
-  from { stroke-dashoffset: 1; }
-  to { stroke-dashoffset: 0; }
 }
 
 @keyframes fadeIn {
@@ -878,8 +856,6 @@ section {
   .crater-glow,
   .plume,
   .ember,
-  #heroStars circle,
-  #townLights circle,
   .scroll-cue span {
     animation: none;
   }
@@ -913,15 +889,11 @@ section {
   color: #ffb37a;
 }
 
-[data-bs-theme="dark"] .hero::before {
-  filter: grayscale(1) brightness(0.55) contrast(1.25);
-}
-
 [data-bs-theme="dark"] .hero-overlay {
   background: linear-gradient(180deg, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.45) 100%);
 }
 
-[data-bs-theme="dark"] .hero-night-tint {
+[data-bs-theme="dark"] .hero-night {
   opacity: 1;
 }
 

@@ -52,23 +52,24 @@
 
   <main>
     <section class="hero" id="top">
+      <!-- Night photo, pre-aligned to mayon.jpg (same 3888x2592 size and framing) so nothing shifts on toggle -->
+      <div class="hero-night"></div>
       <div class="hero-overlay"></div>
-      <div class="hero-night-tint"></div>
-      <!-- Night mode lava; viewBox matches mayon.jpg ratio so it lines up with background-size: cover -->
+      <!-- Night mode lava; viewBox matches the hero photos' ratio so it lines up with background-size: cover -->
       <svg class="hero-lava" viewBox="0 0 2353 1568" preserveAspectRatio="xMidYMin slice" aria-hidden="true">
         <defs>
           <!-- Roughens the smooth paths into irregular, organic lava channels -->
-          <filter id="lavaRough" filterUnits="userSpaceOnUse" x="820" y="200" width="620" height="740">
+          <filter id="lavaRough" filterUnits="userSpaceOnUse" x="760" y="200" width="720" height="740">
             <feTurbulence type="fractalNoise" baseFrequency="0.045" numOctaves="3" seed="7" result="noise" />
             <feDisplacementMap in="SourceGraphic" in2="noise" scale="14" xChannelSelector="R" yChannelSelector="G" />
           </filter>
           <filter id="blurWide" filterUnits="userSpaceOnUse" x="700" y="100" width="860" height="900">
             <feGaussianBlur stdDeviation="22" />
           </filter>
-          <filter id="blurMid" filterUnits="userSpaceOnUse" x="820" y="200" width="620" height="740">
+          <filter id="blurMid" filterUnits="userSpaceOnUse" x="760" y="200" width="720" height="740">
             <feGaussianBlur stdDeviation="5" />
           </filter>
-          <filter id="blurSoft" filterUnits="userSpaceOnUse" x="820" y="200" width="620" height="740">
+          <filter id="blurSoft" filterUnits="userSpaceOnUse" x="760" y="200" width="720" height="740">
             <feGaussianBlur stdDeviation="1.2" />
           </filter>
           <filter id="rockGlow" x="-300%" y="-300%" width="700%" height="700%">
@@ -84,28 +85,21 @@
               result="d" />
             <feGaussianBlur in="d" stdDeviation="10" />
           </filter>
-          <filter id="lightGlow" x="-300%" y="-300%" width="700%" height="700%">
-            <feGaussianBlur stdDeviation="3" result="b" />
-            <feMerge>
-              <feMergeNode in="b" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
 
           <!-- Hot near the vent, cooling to dark red at the flow fronts -->
-          <linearGradient id="lavaGrad" gradientUnits="userSpaceOnUse" x1="0" y1="285" x2="0" y2="880">
+          <linearGradient id="lavaGrad" gradientUnits="userSpaceOnUse" x1="0" y1="275" x2="0" y2="910">
             <stop offset="0" stop-color="#ffc27a" />
             <stop offset="0.08" stop-color="#ff8a3a" />
             <stop offset="0.3" stop-color="#ff561e" />
             <stop offset="0.7" stop-color="#f23a12" />
             <stop offset="1" stop-color="#c41e08" />
           </linearGradient>
-          <linearGradient id="hotGrad" gradientUnits="userSpaceOnUse" x1="0" y1="285" x2="0" y2="560">
+          <linearGradient id="hotGrad" gradientUnits="userSpaceOnUse" x1="0" y1="275" x2="0" y2="560">
             <stop offset="0" stop-color="#ffd9a0" stop-opacity="0.9" />
             <stop offset="0.5" stop-color="#ffa24a" stop-opacity="0.5" />
             <stop offset="1" stop-color="#ff7a2a" stop-opacity="0" />
           </linearGradient>
-          <linearGradient id="plumeGrad" gradientUnits="userSpaceOnUse" x1="0" y1="290" x2="0" y2="100">
+          <linearGradient id="plumeGrad" gradientUnits="userSpaceOnUse" x1="0" y1="272" x2="0" y2="82">
             <stop offset="0" stop-color="#d0502a" stop-opacity="0.55" />
             <stop offset="0.4" stop-color="#6a3a44" stop-opacity="0.3" />
             <stop offset="1" stop-color="#2a2f48" stop-opacity="0" />
@@ -116,41 +110,43 @@
             <stop offset="100%" stop-color="#ff2a00" stop-opacity="0" />
           </radialGradient>
 
-          <!-- Lava channels traced along Mayon's gullies (coordinates are in mayon.jpg space) -->
+          <!-- Lava channels traced over the flows in mayon-night.jpg (viewBox space, aligned to mayon.jpg) -->
           <path id="f1"
-            d="M1100 292 C1118 350, 1128 400, 1140 450 S1158 540, 1150 600 S1175 700, 1168 770 S1185 840, 1178 868" />
-          <path id="f2" d="M1094 296 C1070 360, 1040 430, 1018 500 S985 600, 975 680 S955 760, 948 815" />
-          <path id="f3" d="M1108 294 C1150 350, 1195 420, 1230 500 S1270 610, 1290 700 S1310 760, 1318 790" />
-          <path id="f4" d="M1150 600 C1130 650, 1105 700, 1095 760 S1080 820, 1075 850" />
-          <path id="f5" d="M1018 500 C1040 560, 1055 610, 1060 665" />
-          <path id="f6" d="M1100 292 C1090 330, 1082 360, 1075 405" />
-          <path id="f7" d="M1230 500 C1215 560, 1210 610, 1220 665" />
+            d="M1116 280 L1114 305 Q1113 330, 1108 364 Q1103 397, 1108 420 Q1113 443, 1122 470 Q1130 497, 1140 524 Q1150 550, 1163 576 Q1176 603, 1184 630 Q1193 656, 1212 680 Q1230 703, 1240 713 Q1250 723, 1260 743 Q1270 763, 1288 780 Q1306 796, 1328 826 Q1350 856, 1376 881 L1403 906" />
+          <path id="f2" d="M1110 276 L1103 284 Q1096 293, 1073 322 Q1050 350, 1023 374 Q996 397, 963 420 Q930 443, 903 463 L876 483" />
+          <path id="f3" d="M1128 276 L1136 278 Q1143 280, 1160 294 Q1176 307, 1196 328 Q1216 350, 1230 366 Q1243 383, 1254 392 L1266 400" />
+          <path id="f4" d="M1250 723 L1252 736 Q1253 750, 1262 773 Q1270 796, 1273 813 Q1276 830, 1283 850 Q1290 870, 1296 883 L1303 896" />
+          <path id="f5" d="M1104 284 L1090 297 Q1076 310, 1050 346 Q1023 383, 993 413 Q963 443, 940 473 Q916 503, 900 523 L883 543" />
+          <path id="f6" d="M1103 397 L1096 414 Q1090 430, 1085 446 Q1080 463, 1078 486 Q1076 510, 1073 530 L1070 550" />
+          <path id="f7" d="M1076 510 L1066 525 Q1056 540, 1046 556 L1036 573" />
+          <!-- Fresh flows: continue past where the photo's lava ends, over unlit rock, so the pour is visible -->
+          <path id="f8" d="M1266 400 L1278 420 Q1290 440, 1305 470 Q1320 500, 1332 530 Q1345 560, 1354 590 Q1362 620, 1368 655 Q1375 690, 1380 725 L1384 760" />
+          <path id="f9" d="M1070 550 L1066 580 Q1062 610, 1055 645 Q1048 680, 1043 715 Q1038 750, 1035 782 L1032 815" />
+          <path id="f10" d="M883 543 L872 572 Q862 600, 850 630 Q838 660, 828 690 Q818 720, 811 752 L804 785" />
 
-          <!-- Reveal mask: copies of the flows (added by script) draw downhill to "pour" the lava -->
+          <!-- Softens the pour front; each flow gets its own reveal mask (added by script) -->
           <filter id="revealSoft" filterUnits="userSpaceOnUse" x="600" y="100" width="1000" height="950">
-            <feGaussianBlur stdDeviation="18" />
+            <feGaussianBlur stdDeviation="5" />
           </filter>
-          <mask id="lavaReveal" maskUnits="userSpaceOnUse" x="0" y="0" width="2353" height="1568">
-            <g id="revealPaths" filter="url(#revealSoft)"></g>
-          </mask>
         </defs>
-
-        <g id="heroStars"></g>
 
         <!-- Ash plume lit from below -->
         <g class="plume-rise">
           <g class="plume">
             <path filter="url(#plumeBlur)" fill="url(#plumeGrad)"
-              d="M1092 290 C1070 250, 1030 210, 1000 170 C975 135, 1010 105, 1045 120 C1085 140, 1112 200, 1114 290 Z" />
+              d="M1112 272 C1090 232, 1050 192, 1020 152 C995 117, 1030 87, 1065 102 C1105 122, 1132 182, 1134 272 Z" />
           </g>
         </g>
 
-        <g mask="url(#lavaReveal)">
+        <g>
           <!-- Glow cast on the slopes around the flows -->
           <g class="lava-illum" filter="url(#blurWide)">
             <use href="#f1" />
             <use href="#f2" />
             <use href="#f3" />
+            <use href="#f8" />
+            <use href="#f9" />
+            <use href="#f10" />
           </g>
 
           <g filter="url(#lavaRough)">
@@ -162,6 +158,9 @@
               <use href="#f5" />
               <use href="#f6" />
               <use href="#f7" />
+              <use href="#f8" class="main" />
+              <use href="#f9" />
+              <use href="#f10" />
             </g>
             <g class="lava-core">
               <use href="#f1" class="main" />
@@ -171,6 +170,9 @@
               <use href="#f5" />
               <use href="#f6" />
               <use href="#f7" />
+              <use href="#f8" class="main" />
+              <use href="#f9" />
+              <use href="#f10" />
             </g>
             <g class="lava-hot">
               <use href="#f1" />
@@ -184,6 +186,9 @@
               <use href="#f3" style="animation-delay: -4s" />
               <use href="#f4" style="animation-delay: -1s" />
               <use href="#f7" style="animation-delay: -3s" />
+              <use href="#f8" class="ext" />
+              <use href="#f9" class="ext" style="animation-delay: -1.5s" />
+              <use href="#f10" class="ext" style="animation-delay: -3s" />
             </g>
           </g>
 
@@ -231,19 +236,38 @@
               <animate attributeName="opacity" values="0;1;0.6;0" keyTimes="0;0.1;0.6;1" dur="3.5s" begin="1.2s"
                 repeatCount="indefinite" />
             </ellipse>
+            <ellipse rx="5" ry="1.8" opacity="0">
+              <animateMotion dur="4s" begin="0.5s" repeatCount="indefinite" rotate="auto">
+                <mpath href="#f8" />
+              </animateMotion>
+              <animate attributeName="opacity" values="0;1;0.8;0" keyTimes="0;0.08;0.7;1" dur="4s" begin="0.5s"
+                repeatCount="indefinite" />
+            </ellipse>
+            <ellipse rx="4" ry="1.5" opacity="0">
+              <animateMotion dur="3.8s" begin="2s" repeatCount="indefinite" rotate="auto">
+                <mpath href="#f9" />
+              </animateMotion>
+              <animate attributeName="opacity" values="0;1;0.7;0" keyTimes="0;0.08;0.7;1" dur="3.8s" begin="2s"
+                repeatCount="indefinite" />
+            </ellipse>
+            <ellipse rx="4" ry="1.5" opacity="0">
+              <animateMotion dur="4.2s" begin="1s" repeatCount="indefinite" rotate="auto">
+                <mpath href="#f10" />
+              </animateMotion>
+              <animate attributeName="opacity" values="0;1;0.7;0" keyTimes="0;0.08;0.7;1" dur="4.2s" begin="1s"
+                repeatCount="indefinite" />
+            </ellipse>
           </g>
         </g>
 
         <!-- Summit vent -->
         <g class="vent">
-          <circle class="crater-glow" cx="1100" cy="288" r="120" fill="url(#craterGlow)" />
-          <circle cx="1100" cy="290" r="6" fill="#ffd9a0" filter="url(#rockGlow)" />
+          <circle class="crater-glow" cx="1120" cy="270" r="120" fill="url(#craterGlow)" />
+          <circle cx="1120" cy="272" r="6" fill="#ffd9a0" filter="url(#rockGlow)" />
           <g id="fountain" filter="url(#rockGlow)"></g>
         </g>
-        <circle class="crater-flash" cx="1100" cy="288" r="280" fill="url(#craterGlow)" opacity="0" />
+        <circle class="crater-flash" cx="1120" cy="270" r="280" fill="url(#craterGlow)" opacity="0" />
         <g id="sparks" filter="url(#rockGlow)"></g>
-
-        <g id="townLights" filter="url(#lightGlow)"></g>
       </svg>
       <div class="container hero-content">
         <p class="hero-meta">Albay, Philippines &nbsp;/&nbsp; 13.257&deg; N, 123.686&deg; E</p>
@@ -542,6 +566,8 @@
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
   <script>
+    var pourLava = function () { }, stopLava = function () { };
+
     (function () {
       var ns = 'http://www.w3.org/2000/svg';
 
@@ -551,44 +577,11 @@
         return node;
       }
 
-      // Stars in the sky, skipping the volcano's cone silhouette
-      var stars = document.getElementById('heroStars');
-      for (var i = 0; i < 220; i++) {
-        var x = Math.random() * 2353;
-        var y = Math.random() * 700;
-        var coneLeft = 1100 - (y - 280) * 1100 / 570;
-        var coneRight = 1100 + (y - 280) * 1253 / 600;
-        if (y > 280 && x > coneLeft && x < coneRight) continue;
-        var star = el('circle', { cx: x, cy: y, r: Math.random() * 1.1 + 0.4, opacity: 0.4 + Math.random() * 0.6 });
-        star.style.animationDelay = (Math.random() * -5) + 's';
-        stars.appendChild(star);
-      }
-
-      // Shoreline lights: [x, y, color]. The terminal building is the bright cluster.
-      var lights = document.getElementById('townLights');
-      var warm = '#ffdca0', white = '#fff4dc', amber = '#ff9a55', green = '#a8ffb8';
-      var spots = [
-        [55, 1062, amber], [178, 1066, amber], [300, 1070, amber], [405, 1076, amber],
-        [512, 1084, amber], [617, 1100, amber], [707, 1114, amber],
-        [1240, 1176, warm], [1385, 1172, warm], [1455, 1175, warm], [1545, 1180, warm],
-        [1620, 1176, green], [1700, 1178, warm], [1800, 1190, white], [1880, 1194, warm],
-        [1965, 1172, warm], [2060, 1172, warm], [2150, 1174, warm]
-      ];
-      for (var bx = 790; bx <= 1150; bx += 20 + Math.random() * 12) {
-        var tone = Math.random() < 0.08 ? green : (Math.random() > 0.4 ? warm : white);
-        spots.push([bx, 1180 + Math.random() * 8, tone]);
-      }
-      spots.forEach(function (p) {
-        var light = el('circle', { cx: p[0], cy: p[1], r: 1.8 + Math.random() * 1.2, fill: p[2] });
-        light.style.animationDelay = (Math.random() * -6) + 's';
-        lights.appendChild(light);
-      });
-
       // Small fountain of embers spraying from the summit vent
       var fountain = document.getElementById('fountain');
       for (var e = 0; e < 30; e++) {
         var t = 0.9 + Math.random() * 0.9;
-        var ember = el('circle', { cx: 1100, cy: 288, r: Math.random() * 1.4 + 0.6, 'class': 'ember' });
+        var ember = el('circle', { cx: 1120, cy: 270, r: Math.random() * 1.4 + 0.6, 'class': 'ember' });
         ember.style.setProperty('--dx', ((Math.random() * 2 - 1) * 45) + 'px');
         ember.style.setProperty('--dy', (-(40 + Math.random() * 90)) + 'px');
         ember.style.setProperty('--t', t + 's');
@@ -596,34 +589,98 @@
         fountain.appendChild(ember);
       }
 
-      // Mask copies of each flow; branches start once the main flows reach their fork
-      var reveal = document.getElementById('revealPaths');
-      ['f1', 'f2', 'f3', 'f6', 'f4', 'f5', 'f7'].forEach(function (id, i) {
-        reveal.appendChild(el('path', {
-          d: document.getElementById(id).getAttribute('d'),
-          pathLength: 1,
-          'class': 'reveal-path' + (i > 3 ? ' branch' : '')
-        }));
+      // ---- Lava pour ----
+      // Every flow has its own reveal mask, so a neighbouring flow can never uncover it early.
+      // Branches start exactly when their parent's front reaches the fork.
+      var SPEED = 50;          // viewBox units per second along the flow
+      var START = 0.9;         // seconds, just after the crater flash
+      var parents = { f6: 'f1', f4: 'f1', f7: 'f6', f8: 'f3', f9: 'f6', f10: 'f5' };
+      var order = ['f1', 'f2', 'f3', 'f5', 'f6', 'f4', 'f7', 'f8', 'f9', 'f10']; // parents before children
+      var defs = document.querySelector('.hero-lava defs');
+      var byId = {};
+
+      // Starts quick out of the vent and slows as it spreads (speed 1.4x -> 0.6x)
+      function ease(p) { return p * (1.4 - 0.4 * p); }
+      function unease(d) { return (1.4 - Math.sqrt(1.96 - 1.6 * d)) / 0.8; }
+
+      var flows = order.map(function (id) {
+        var src = document.getElementById(id);
+        var mask = el('mask', { id: 'rv-' + id, maskUnits: 'userSpaceOnUse', x: 0, y: 0, width: 2353, height: 1568 });
+        var reveal = el('path', { d: src.getAttribute('d'), pathLength: 1, 'class': 'reveal-path', filter: 'url(#revealSoft)' });
+        mask.appendChild(reveal);
+        defs.appendChild(mask);
+
+        var f = { id: id, src: src, len: src.getTotalLength(), reveal: reveal };
+        f.dur = f.len / SPEED;
+        var parent = byId[parents[id]];
+        if (!parent) {
+          f.start = START;
+        } else {
+          // Distance along the parent where this branch leaves it
+          var from = src.getPointAtLength(0), fork = 0, best = Infinity;
+          for (var s = 0; s <= parent.len; s += 2) {
+            var q = parent.src.getPointAtLength(s);
+            var dist = (q.x - from.x) * (q.x - from.x) + (q.y - from.y) * (q.y - from.y);
+            if (dist < best) { best = dist; fork = s; }
+          }
+          f.start = parent.start + parent.dur * unease(Math.min(fork / parent.len, 1));
+        }
+        byId[id] = f;
+        return f;
       });
+
+      // Mask every lava stroke and rock with its own flow's reveal
+      document.querySelectorAll('.hero-lava use').forEach(function (u) {
+        u.setAttribute('mask', 'url(#rv-' + u.getAttribute('href').slice(1) + ')');
+      });
+      // Rocks move via animateMotion, so the mask goes on an untransformed wrapper
+      document.querySelectorAll('.lava-rocks ellipse').forEach(function (rock) {
+        var id = rock.querySelector('mpath').getAttribute('href').slice(1);
+        var wrap = el('g', { mask: 'url(#rv-' + id + ')' });
+        rock.parentNode.insertBefore(wrap, rock);
+        wrap.appendChild(rock);
+      });
+
+      var total = Math.max.apply(null, flows.map(function (f) { return f.start + f.dur; }));
+      var frameId;
+
+      stopLava = function () { cancelAnimationFrame(frameId); };
+
+      pourLava = function () {
+        stopLava();
+        flows.forEach(function (f) {
+          f.reveal.setAttribute('stroke-dashoffset', 1);
+        });
+        var t0 = performance.now();
+        frameId = requestAnimationFrame(function frame(now) {
+          var t = (now - t0) / 1000;
+          flows.forEach(function (f) {
+            var p = Math.min(Math.max((t - f.start) / f.dur, 0), 1);
+            f.reveal.setAttribute('stroke-dashoffset', 1 - ease(p));
+          });
+          if (t < total) frameId = requestAnimationFrame(frame);
+        });
+      };
     })();
 
     var hero = document.querySelector('.hero');
     var sparks = document.getElementById('sparks');
     var sparkTimer;
 
-    // Crater flash, sparks and quake, then the lava pours downhill (timings live in style.css)
+    // Crater flash, sparks and quake (timings in style.css), then the lava pours downhill (pourLava)
     function erupt() {
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
       hero.classList.remove('erupting');
       void hero.offsetWidth; // restart the CSS animations
       hero.classList.add('erupting');
+      pourLava();
 
       sparks.textContent = '';
       for (var i = 0; i < 45; i++) {
         var spark = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-        spark.setAttribute('cx', 1100);
-        spark.setAttribute('cy', 290);
+        spark.setAttribute('cx', 1120);
+        spark.setAttribute('cy', 272);
         spark.setAttribute('r', Math.random() * 2 + 1);
         spark.setAttribute('class', 'spark');
         spark.style.setProperty('--dx', ((Math.random() * 2 - 1) * 220) + 'px');
@@ -644,6 +701,7 @@
       if (isDark) {
         root.removeAttribute('data-bs-theme');
         hero.classList.remove('erupting');
+        stopLava();
       } else {
         root.setAttribute('data-bs-theme', 'dark');
         erupt();
